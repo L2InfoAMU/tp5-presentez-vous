@@ -23,8 +23,8 @@ public class BruteRasterImage implements Image {
     }
 
     public BruteRasterImage(Color[][] colors){
-        width = Matrices.getColumnCount(colors);
-        height = Matrices.getRowCount(colors);
+        width = Matrices.getRowCount(colors);
+        height = Matrices.getColumnCount(colors);
         this.colors = new Color[width][height];
         for(int x = 0 ; x < this.width; x++) {
             for(int y = 0; y < this.height; y++) {
