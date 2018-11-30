@@ -6,11 +6,13 @@ import util.Matrices;
 
 public class BruteRasterImage implements Image {
 
+    // VARIABLES
     Color[][] colors;
     Color color;
     int width;
     int height;
 
+    // COINSTRUCTEURS
     public BruteRasterImage(Color color, int width, int height) {
         this.width = width;
         this.height = height;
@@ -33,7 +35,7 @@ public class BruteRasterImage implements Image {
         }
     }
 
-
+    // METHODES // GETTERS // SETTERS
     public void createRepresentation(){
         this.colors = new Color[this.width][this.height];
     }
