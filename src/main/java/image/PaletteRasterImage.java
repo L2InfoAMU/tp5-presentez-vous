@@ -2,6 +2,9 @@ package image;
 
 import javafx.scene.paint.Color;
 import util.Matrices;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PaletteRasterImage implements Image {
@@ -31,8 +34,8 @@ public class PaletteRasterImage implements Image {
         //construisant une image à partir de la matrice
         //donnée en paramètre. Le premier indice correspondant à la coordonnée en x et le deuxième indice
         //correspondant à la coordonnée en y
-        width = indexesOfColors.length;
-        height = indexesOfColors[0].length;
+        this.width = Matrices.getRowCount(pixels);
+        this.height = Matrices.getColumnCount(pixels);
         createRepresentation();
         setPixelsColor(pixels);
 
@@ -43,18 +46,20 @@ public class PaletteRasterImage implements Image {
     public void createRepresentation(){
         //alloue la liste pour stocker la palette et la matrice représentant
         //l’image (à utiliser dans le constructeur)
+        this.palette = new ArrayList<>();
+        this.indexesOfColors = new int[this.width][this.height];
 
     }
 
     public void setPixelColor(Color color, int x, int y){
         //fixe la couleur d’un pixel (en ajoutant
         //la couleur à la palette si elle n’était pas dans la palette)
-        indexesOfColors[x][y] = palette.indexOf(color);
-    }
+        if(!palette.contains(color))
+        {
+            palette.add(color);
+        }
 
-    public Color getPixelColor(int x, int y){
-        //retourne la couleur d’un pixel
-        return palette.get(indexesOfColors[x][y]);
+        this.indexesOfColors[x][y] = palette.indexOf(color);
     }
 
 
@@ -80,6 +85,12 @@ public class PaletteRasterImage implements Image {
             }
         }
     }
+
+    public Color getPixelColor(int x, int y){
+        //retourne la couleur d’un pixel
+        return palette.get(indexesOfColors[x][y]);
+    }
+
 
     public int getWidth() {
         //retourne la largeur de l’image
