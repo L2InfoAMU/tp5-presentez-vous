@@ -28,8 +28,10 @@ public class Display implements Initializable {
 
         /*imageFactory = new RasterUniformImageFactory(200,
                 200, Color.RED, RasterImageType.BRUTE);*/ // Carré Rouge
-        imageFactory = new RasterFlagFactory(900, 600,
-                Color.BLUE, Color.WHITE, Color.RED, RasterImageType.SPARSE); //DRAPEAU
+        /*imageFactory = new RasterFlagFactory(900, 600,
+                Color.BLUE, Color.WHITE, Color.RED, RasterImageType.SPARSE); //DRAPEAU*/
+        imageFactory = new LogoLISFactory(); //LOGO LIS
+
         this.image = imageFactory.makeImage();
         render();
     }
