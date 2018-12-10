@@ -2,27 +2,22 @@ package image;
 
 import javafx.scene.paint.Color;
 import util.Matrices;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class PaletteRasterImage implements Image {
+public class PaletteRasterImage extends RasterImage implements Image {
 
     // VARIABLES
     List<Color> palette;
     int[][] indexesOfColors;
-    int width;
-    int height;
+
 
 
     // CONSTRUCTEURS
     public PaletteRasterImage(Color color, int width, int height){
         //construisant une image de
         //la taille spécifiée et dont tous les pixels sont de la couleur spécifiée
-        this.width = width;
-        this.height = height;
-        createRepresentation();
+        super(color,width,height);
         for(int x = 0 ; x < this.width; x++) {
             for(int y = 0; y < this.height; y++) {
                 palette.add(color);
@@ -34,10 +29,7 @@ public class PaletteRasterImage implements Image {
         //construisant une image à partir de la matrice
         //donnée en paramètre. Le premier indice correspondant à la coordonnée en x et le deuxième indice
         //correspondant à la coordonnée en y
-        this.width = Matrices.getRowCount(pixels);
-        this.height = Matrices.getColumnCount(pixels);
-        createRepresentation();
-        setPixelsColor(pixels);
+       super(pixels);
 
     }
 
@@ -51,15 +43,14 @@ public class PaletteRasterImage implements Image {
 
     }
 
-    public void setPixelColor(Color color, int x, int y){
+    public void setPixelColor(Color color, int x, int y) {
         //fixe la couleur d’un pixel (en ajoutant
         //la couleur à la palette si elle n’était pas dans la palette)
-        if(!palette.contains(color))
+        if (!palette.contains(color))
         {
             palette.add(color);
         }
-
-        this.indexesOfColors[x][y] = palette.indexOf(color);
+            this.indexesOfColors[x][y] = palette.indexOf(color);
     }
 
 
@@ -76,7 +67,7 @@ public class PaletteRasterImage implements Image {
     }
 
 
-    private void setPixelsColor(Color color) {
+    public void setPixelsColor(Color color) {
         //change les valeurs de tous les pixels pour qu’ils
         //soient tous de la couleur donnée en paramètre.
         for (int x = 0; x < width; x++) {
@@ -89,27 +80,6 @@ public class PaletteRasterImage implements Image {
     public Color getPixelColor(int x, int y){
         //retourne la couleur d’un pixel
         return palette.get(indexesOfColors[x][y]);
-    }
-
-
-    public int getWidth() {
-        //retourne la largeur de l’image
-        return width;
-    }
-
-    public int getHeight(){
-        //retourne la hauteur de l’image
-        return height;
-    }
-
-    protected void setWidth(int width){
-        //fixe la largeur de l’image
-        this.width = width;
-    }
-
-    protected void setHeight(int height){
-        //fixe la hauteur de l’image
-        this.height = height;
     }
 
 }
