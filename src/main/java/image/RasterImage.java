@@ -4,9 +4,14 @@ package image;
 import javafx.scene.paint.Color;
 import util.Matrices;
 
-public abstract class RasterImage {
+import java.util.List;
+
+public abstract class RasterImage implements Image{
     int width;
     int height;
+
+
+
 
     //CONSTRUCTEUR
 
@@ -24,8 +29,6 @@ public abstract class RasterImage {
         setPixelsColor(colors);
     }
 
-    protected abstract void setPixelsColor(Color color);
-
     protected abstract void setPixelsColor(Color[][] pixels);
 
     protected abstract void createRepresentation();
@@ -35,8 +38,15 @@ public abstract class RasterImage {
 
 
     //METHODES
+    public void setPixelsColor(Color color) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                setPixelColor(color, x, y);
+            }
+        }
+    }
 
-
+    protected abstract void setPixelColor(Color color, int x, int y);
 
 
     public int getWidth() {

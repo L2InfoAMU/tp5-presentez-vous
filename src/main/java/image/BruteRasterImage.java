@@ -7,6 +7,7 @@ import util.Matrices;
 public class BruteRasterImage extends RasterImage implements Image  {
 
     // VARIABLES
+    //dans classe abstract
     Color[][] colors;
 
     // CONSTRUCTEURS
@@ -42,11 +43,6 @@ public class BruteRasterImage extends RasterImage implements Image  {
     public void setPixelsColor(Color color){
         width = Matrices.getColumnCount(colors);   //largeur
         height = Matrices.getRowCount(colors);     //hauteur
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                setPixelColor(color, x, y);
-            }
-        }
     }
 
     @Override

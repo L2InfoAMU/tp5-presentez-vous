@@ -5,12 +5,13 @@ import util.Matrices;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class PaletteRasterImage extends RasterImage implements Image {
 
     // VARIABLES
+    //dans classe abstract
     List<Color> palette;
     int[][] indexesOfColors;
-
 
 
     // CONSTRUCTEURS
@@ -66,16 +67,6 @@ public class PaletteRasterImage extends RasterImage implements Image {
         }
     }
 
-
-    public void setPixelsColor(Color color) {
-        //change les valeurs de tous les pixels pour qu’ils
-        //soient tous de la couleur donnée en paramètre.
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                setPixelColor(color, x, y);
-            }
-        }
-    }
 
     public Color getPixelColor(int x, int y){
         //retourne la couleur d’un pixel
